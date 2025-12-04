@@ -1,9 +1,13 @@
 // taken straight from shadcn data-table example and modified for my needs
 // https://ui.shadcn.com/docs/components/data-table
-import type { ColumnDef } from "@tanstack/react-table";
+// Sorting and filtering implemented by looking at the tanscak table documentation
+// https://tanstack.com/table/v8/docs/guide/sorting
+
+import type { ColumnDef, SortingState } from "@tanstack/react-table";
 import {
   flexRender,
   getCoreRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import {
@@ -15,6 +19,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Skeleton } from "./ui/skeleton";
+import { useState } from "react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -27,10 +32,15 @@ export function DataTable<TData, TValue>({
   data,
   isLoading = false,
 }: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = useState<SortingState>([]);
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    state: { sorting },
+    onSortingChange: setSorting,
   });
 
   return (
@@ -41,13 +51,26 @@ export function DataTable<TData, TValue>({
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead
+                    key={header.id}
+                    onClick={header.column.getToggleSortingHandler()}
+                    className={
+                      header.column.getCanSort()
+                        ? "cursor-pointer select-none"
+                        : ""
+                    }
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
+                    {{
+                      // Unicode characters for up and down arow.
+                      asc: " \u25B2",
+                      desc: " \u25BC",
+                    }[header.column.getIsSorted() as string] ?? null}
                   </TableHead>
                 );
               })}
