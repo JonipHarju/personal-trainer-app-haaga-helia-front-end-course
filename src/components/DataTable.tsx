@@ -3,10 +3,15 @@
 // Sorting and filtering implemented by looking at the tanscak table documentation
 // https://tanstack.com/table/v8/docs/guide/sorting
 
-import type { ColumnDef, SortingState } from "@tanstack/react-table";
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+} from "@tanstack/react-table";
 import {
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -33,14 +38,17 @@ export function DataTable<TData, TValue>({
   isLoading = false,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
     data,
     columns,
+    state: { sorting, columnFilters },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    state: { sorting },
     onSortingChange: setSorting,
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnFiltersChange: setColumnFilters,
   });
 
   return (
@@ -53,24 +61,45 @@ export function DataTable<TData, TValue>({
                 return (
                   <TableHead
                     key={header.id}
-                    onClick={header.column.getToggleSortingHandler()}
-                    className={
-                      header.column.getCanSort()
-                        ? "cursor-pointer select-none"
-                        : ""
-                    }
+                    className="px-4 py-2 text-left align-top"
                   >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                    {{
-                      // Unicode characters for up and down arow.
-                      asc: " \u25B2",
-                      desc: " \u25BC",
-                    }[header.column.getIsSorted() as string] ?? null}
+                    <div
+                      onClick={
+                        header.column.getCanSort()
+                          ? header.column.getToggleSortingHandler()
+                          : undefined
+                      }
+                      className={
+                        header.column.getCanSort()
+                          ? "cursor-pointer select-none inline-flex items-center"
+                          : ""
+                      }
+                    >
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                      {{
+                        // Unicode characters for up and down arow.
+                        asc: " \u25B2",
+                        desc: " \u25BC",
+                      }[header.column.getIsSorted() as string] ?? null}
+                    </div>
+                    {header.column.getCanFilter() ? (
+                      <div>
+                        <input
+                          type="text"
+                          value={
+                            (header.column.getFilterValue() ?? "") as string
+                          }
+                          onChange={(e) =>
+                            header.column.setFilterValue(e.target.value)
+                          }
+                          placeholder={`Filter ${String(header.column.id)}`}
+                          className="border p-2 my-1  w-full"
+                        />
+                      </div>
+                    ) : null}
                   </TableHead>
                 );
               })}
