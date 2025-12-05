@@ -21,8 +21,6 @@ export const trainingColumns: ColumnDef<Training>[] = [
       if (end && date > DateTime.fromISO(end).endOf("day")) return false;
       return true;
     },
-
-    enableColumnFilter: true,
   },
   {
     accessorKey: "duration",
