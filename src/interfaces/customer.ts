@@ -1,3 +1,4 @@
+import type { Links } from "./links";
 export interface Customer {
   firstname: string;
   lastname: string;
@@ -7,10 +8,4 @@ export interface Customer {
   email: string;
   phone: string;
   _links: Links;
-}
-
-interface Links {
-  self: { href: string };
-  customer: { href: string };
-  trainings: { href: string };
 }
