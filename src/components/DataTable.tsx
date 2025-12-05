@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/table";
 import { Skeleton } from "./ui/skeleton";
 import { useState } from "react";
+import DateRangeFilter from "./DateRangeFilter";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -87,17 +88,21 @@ export function DataTable<TData, TValue>({
                     </div>
                     {header.column.getCanFilter() ? (
                       <div>
-                        <input
-                          type="text"
-                          value={
-                            (header.column.getFilterValue() ?? "") as string
-                          }
-                          onChange={(e) =>
-                            header.column.setFilterValue(e.target.value)
-                          }
-                          placeholder={`Filter ${String(header.column.id)}`}
-                          className="border p-2 my-1  w-full"
-                        />
+                        {header.column.id === "date" ? (
+                          <DateRangeFilter dateColumn={header.column} />
+                        ) : (
+                          <input
+                            type="text"
+                            value={
+                              (header.column.getFilterValue() ?? "") as string
+                            }
+                            onChange={(e) =>
+                              header.column.setFilterValue(e.target.value)
+                            }
+                            placeholder={`Filter ${String(header.column.id)}`}
+                            className="border p-2 my-1  w-full"
+                          />
+                        )}
                       </div>
                     ) : null}
                   </TableHead>
