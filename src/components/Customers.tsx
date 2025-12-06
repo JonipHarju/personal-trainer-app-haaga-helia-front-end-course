@@ -1,5 +1,5 @@
 import type { Customer } from "@/interfaces/customer";
-import { customerColumns } from "./CustomerColumns";
+import { getCustomerColumns } from "../lib/customerColumns";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllCustomers } from "@/api/customers";
 import { DataTable } from "./DataTable";
@@ -11,6 +11,8 @@ export default function Customers() {
   });
 
   const customers: Customer[] = isSuccess ? data._embedded.customers : [];
+
+  const customerColumns = getCustomerColumns();
 
   console.log(customers);
   return (
