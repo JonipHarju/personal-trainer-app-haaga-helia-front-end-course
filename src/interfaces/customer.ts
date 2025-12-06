@@ -9,3 +9,6 @@ export interface Customer {
   phone: string;
   _links: Links;
 }
+
+// Used for actions where _links is not included like creating a customer
+export type CustomerData = Omit<Customer, "_links">;
