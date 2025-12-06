@@ -33,7 +33,7 @@ export default function DateRangeFilter<TData>({
   };
 
   return (
-    <div className="grid grid-cols-[1fr_auto] gap-2 items-center my-1">
+    <div className="grid grid-cols-[1fr_auto] gap-2 items-center">
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="outline" className="w-full justify-start ">
