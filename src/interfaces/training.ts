@@ -4,4 +4,5 @@ export interface Training {
   date: string;
   duration: number;
   _links: Links;
+  customerName?: string;
 }
