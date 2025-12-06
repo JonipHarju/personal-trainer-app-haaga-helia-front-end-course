@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/dialog";
 import { AddNewCustomerFormInputs } from "./AddNewCustomerForm";
 import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createCustomer } from "@/api/customers";
 
 export function AddNewCustomerDialog() {
   const [formState, setFormState] = useState({
@@ -34,17 +36,35 @@ export function AddNewCustomerDialog() {
     (value) => value.trim() !== ""
   );
 
-  const addNewCustomer = () => {
-    console.log(formState);
+  // Used linkes below as a reference
+  // https://tanstack.com/query/latest/docs/framework/react/guides/mutations
+  //https://tanstack.com/query/latest/docs/framework/react/guides/mutations
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: createCustomer,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["customers"] });
+    },
+    onError: (error: unknown) => {
+      console.error(error);
+    },
+  });
+
+  const addNewCustomer = (e: React.FormEvent) => {
+    e.preventDefault();
+    mutation.mutate(formState);
   };
 
   return (
     <Dialog>
-      <form>
-        <DialogTrigger asChild>
-          <Button variant="outline">Add new customer</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+      <DialogTrigger asChild>
+        <Button variant="outline" className="max-w-fit">
+          Add new customer
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <form onSubmit={addNewCustomer}>
           <DialogHeader>
             <DialogTitle>New customer information</DialogTitle>
             <DialogDescription>
@@ -59,16 +79,12 @@ export function AddNewCustomerDialog() {
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button
-              onClick={addNewCustomer}
-              type="submit"
-              disabled={!isFormValid}
-            >
+            <Button type="submit" disabled={!isFormValid || mutation.isPending}>
               Create
             </Button>
           </DialogFooter>
-        </DialogContent>
-      </form>
+        </form>
+      </DialogContent>
     </Dialog>
   );
 }
