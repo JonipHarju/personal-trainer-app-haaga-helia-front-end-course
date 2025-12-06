@@ -27,6 +27,7 @@ import { Skeleton } from "./ui/skeleton";
 import { useState } from "react";
 import DateRangeFilter from "./DateRangeFilter";
 import { Input } from "./ui/input";
+import DurationRangeFilter from "./DurationRangeFilter";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -87,10 +88,13 @@ export function DataTable<TData, TValue>({
                         desc: " \u25BC",
                       }[header.column.getIsSorted() as string] ?? null}
                     </div>
+
                     {header.column.getCanFilter() ? (
                       <div>
                         {header.column.id === "date" ? (
                           <DateRangeFilter dateColumn={header.column} />
+                        ) : header.column.id === "duration" ? (
+                          <DurationRangeFilter rangeColumn={header.column} />
                         ) : (
                           <Input
                             type="text"
