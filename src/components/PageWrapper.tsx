@@ -4,7 +4,7 @@ export default function PageWrapper({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen w-full bg-background flex flex-col">
+    <div className="min-h-screen w-full bg-background flex flex-col items-center">
       {children}
     </div>
   );
