@@ -12,7 +12,7 @@ export function AddNewCustomerFormInputs({
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full max-w-md my-4">
       <FieldSet>
         <FieldGroup>
           <Field>
