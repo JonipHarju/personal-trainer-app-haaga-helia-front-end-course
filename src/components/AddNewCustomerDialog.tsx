@@ -14,6 +14,7 @@ import { AddNewCustomerFormInputs } from "./AddNewCustomerFormInputs";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createCustomer } from "@/api/customers";
+import { toast } from "sonner";
 
 export function AddNewCustomerDialog() {
   const [formState, setFormState] = useState({
@@ -45,8 +46,11 @@ export function AddNewCustomerDialog() {
     mutationFn: createCustomer,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["customers"] });
+      toast.success("Customer added!");
     },
+
     onError: (error: unknown) => {
+      toast.error("Failed adding customer!");
       console.error(error);
     },
   });
