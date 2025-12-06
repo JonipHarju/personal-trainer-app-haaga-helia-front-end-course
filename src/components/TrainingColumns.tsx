@@ -8,6 +8,10 @@ export const trainingColumns: ColumnDef<Training>[] = [
     header: "Activity",
   },
   {
+    accessorKey: "customerName",
+    header: "Customer Name",
+  },
+  {
     accessorKey: "date",
     header: "Date",
     cell: (cell) =>
