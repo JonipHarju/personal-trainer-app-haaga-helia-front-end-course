@@ -8,5 +8,5 @@ export interface Training {
 }
 
 export type TrainingData = Omit<Training, "_links"> & {
-  customerUrl: string;
+  customer: string;
 };
