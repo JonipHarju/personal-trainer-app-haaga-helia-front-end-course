@@ -6,6 +6,7 @@ import { getTrainingColumns } from "../lib/trainingColumns";
 import { useState } from "react";
 import { DeleteTrainingDialog } from "./DeleteTrainingDialog";
 import { toast } from "sonner";
+import { AddNewTrainingDialog } from "./AddNewTrainingDialog";
 
 export default function Training() {
   const [trainingToDelete, setTrainingToDelete] = useState<{
@@ -53,6 +54,7 @@ export default function Training() {
   console.log(data);
   return (
     <div className="m-12">
+      <AddNewTrainingDialog />
       <DataTable
         columns={trainingColumns}
         data={trainings}
