@@ -7,7 +7,7 @@ import FrontPage from "./components/FrontPage.tsx";
 import Customers from "./components/Customers.tsx";
 import Training from "./components/Training.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Calendar from "./components/Calendar.tsx";
+import CalendarView from "./components/CalendarView.tsx";
 
 const queryClient = new QueryClient();
 
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       { element: <FrontPage />, index: true },
       { path: "customers", element: <Customers /> },
       { path: "training", element: <Training /> },
-      { path: "calendar", element: <Calendar /> },
+      { path: "calendar", element: <CalendarView /> },
     ],
   },
 ]);
