@@ -66,6 +66,7 @@ export function getTrainingColumns(
 
         return (
           <Button
+            size={"sm"}
             onClick={() => handleDelete(dateId, date)}
             variant={"destructive"}
           >
