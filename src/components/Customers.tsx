@@ -35,6 +35,7 @@ export default function Customers() {
     );
   };
 
+  // Delete functionalities
   const handleDelete = (id: string, customerName: string) => {
     console.log("Deleting customer with id ", id, "whos name is", customerName);
     setCustomerToDelete({ id, name: customerName });
