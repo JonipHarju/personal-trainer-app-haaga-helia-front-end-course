@@ -7,4 +7,6 @@ export interface Training {
   customerName?: string;
 }
 
-export type TrainingData = Omit<Training, "_links">;
+export type TrainingData = Omit<Training, "_links"> & {
+  customerUrl: string;
+};
