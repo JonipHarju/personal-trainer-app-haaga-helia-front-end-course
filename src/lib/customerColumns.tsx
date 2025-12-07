@@ -49,12 +49,14 @@ export function getCustomerColumns(
         return (
           <div className="flex gap-2">
             <Button
+              className="cursor-pointer"
               size={"sm"}
               onClick={() => handleEdit(customer, customerId, customerName)}
             >
               Edit
             </Button>
             <Button
+              className="cursor-pointer"
               size={"sm"}
               variant={"destructive"}
               onClick={() => handleDelete(customerId, customerName)}

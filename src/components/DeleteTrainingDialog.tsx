@@ -39,11 +39,21 @@ export function DeleteTrainingDialog({
         </DialogHeader>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline" type="button" onClick={onDeleteCancel}>
+            <Button
+              variant="outline"
+              type="button"
+              onClick={onDeleteCancel}
+              className="cursor-pointer"
+            >
               Cancel
             </Button>
           </DialogClose>
-          <Button variant="destructive" type="button" onClick={onDeleteConfirm}>
+          <Button
+            variant="destructive"
+            type="button"
+            onClick={onDeleteConfirm}
+            className="cursor-pointer"
+          >
             Delete
           </Button>
         </DialogFooter>

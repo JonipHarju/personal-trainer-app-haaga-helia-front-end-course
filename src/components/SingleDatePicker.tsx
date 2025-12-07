@@ -27,7 +27,7 @@ export function SingleDatePicker({ value, onChange }: DatePickerFieldProps) {
           <Button
             variant="outline"
             id="date"
-            className="w-48 justify-between font-normal"
+            className="w-48 justify-between font-normal cursor-pointer"
           >
             {value ? new Date(value).toLocaleDateString() : "Select date"}
             <ChevronDownIcon />

@@ -67,12 +67,13 @@ export function AddNewTrainingFormInputs({
               value={formState.customer}
               onValueChange={handleCustomerChange}
             >
-              <SelectTrigger>
+              <SelectTrigger className="cursor-pointer">
                 <SelectValue placeholder="Select customer" />
               </SelectTrigger>
               <SelectContent>
                 {customers.map((customer) => (
                   <SelectItem
+                    className="cursor-pointer"
                     key={customer._links.self.href}
                     value={customer._links.self.href}
                   >

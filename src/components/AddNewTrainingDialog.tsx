@@ -90,7 +90,7 @@ export function AddNewTrainingDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="max-w-fit">
+        <Button variant="outline" className="max-w-fit cursor-pointer">
           Add new training
         </Button>
       </DialogTrigger>
@@ -111,11 +111,19 @@ export function AddNewTrainingDialog() {
           />
           <DialogFooter>
             <DialogClose asChild>
-              <Button onClick={resetFormState} variant="outline">
+              <Button
+                onClick={resetFormState}
+                variant="outline"
+                className="cursor-pointer"
+              >
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="submit" disabled={!isFormValid || mutation.isPending}>
+            <Button
+              type="submit"
+              disabled={!isFormValid || mutation.isPending}
+              className="cursor-pointer"
+            >
               Create
             </Button>
           </DialogFooter>

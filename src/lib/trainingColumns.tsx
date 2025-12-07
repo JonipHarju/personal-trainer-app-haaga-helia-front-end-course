@@ -69,6 +69,7 @@ export function getTrainingColumns(
             size={"sm"}
             onClick={() => handleDelete(dateId, date)}
             variant={"destructive"}
+            className="cursor-pointer"
           >
             Delete
           </Button>

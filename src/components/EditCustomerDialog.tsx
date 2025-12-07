@@ -87,11 +87,19 @@ export function EditCustomerDialog({
           />
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline" onClick={onEditCancel}>
+              <Button
+                variant="outline"
+                onClick={onEditCancel}
+                className="cursor-pointer"
+              >
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="submit" disabled={!isFormValid || pending}>
+            <Button
+              type="submit"
+              disabled={!isFormValid || pending}
+              className="cursor-pointer"
+            >
               Update
             </Button>
           </DialogFooter>

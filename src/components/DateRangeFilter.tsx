@@ -36,7 +36,10 @@ export default function DateRangeFilter<TData>({
     <div className="grid grid-cols-[1fr_auto] gap-2 items-center">
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" className="w-full justify-start ">
+          <Button
+            variant="outline"
+            className="w-full justify-start cursor-pointer"
+          >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {dateRange?.from ? (
               dateRange.to ? (
@@ -63,7 +66,7 @@ export default function DateRangeFilter<TData>({
       </Popover>
 
       {dateRange && (
-        <Button size="sm" onClick={clearDateFilters}>
+        <Button size="sm" onClick={clearDateFilters} className="cursor-pointer">
           Reset
         </Button>
       )}
