@@ -39,3 +39,17 @@ export async function deleteCustomer(id: string) {
 
   return;
 }
+
+export async function updateCustomer(id: string, customerData: CustomerData) {
+  const response = await fetch(`${BASE_URL}/customers/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(customerData),
+  });
+
+  if (!response.ok) throw new Error("Failed to update customer");
+
+  return response.json();
+}

@@ -1,18 +1,28 @@
-import type { Customer } from "@/interfaces/customer";
+import type { Customer, CustomerData } from "@/interfaces/customer";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { deleteCustomer, fetchAllCustomers } from "@/api/customers";
+import {
+  deleteCustomer,
+  fetchAllCustomers,
+  updateCustomer,
+} from "@/api/customers";
 import { DataTable } from "./DataTable";
 import { AddNewCustomerDialog } from "./AddNewCustomerDialog";
 import { getCustomerColumns } from "@/lib/customerColumns";
 import { useState } from "react";
 import { DeleteCustomerDialog } from "./DeleteCustomerDialog";
 import { toast } from "sonner";
+import { EditCustomerDialog } from "./EditCustomerDialog";
 
 export default function Customers() {
   const [customerToDelete, setCustomerToDelete] = useState<{
     id: string;
     name: string;
+  } | null>(null);
+
+  const [customerToEdit, setCustomerToEdit] = useState<{
+    customer: Customer;
+    id: string;
   } | null>(null);
 
   const { isLoading, isSuccess, data } = useQuery({
@@ -24,6 +34,7 @@ export default function Customers() {
 
   const customers: Customer[] = isSuccess ? data._embedded.customers : [];
 
+  // Edit functionalities
   const handleEdit = (customer: Customer, id: string, customerName: string) => {
     console.log(
       "Editing customer with id ",
@@ -33,8 +44,37 @@ export default function Customers() {
       "Customer info",
       customer
     );
+
+    setCustomerToEdit({ customer, id });
   };
 
+  const onEditCancel = () => setCustomerToEdit(null);
+
+  const editMutation = useMutation({
+    mutationFn: ({
+      id,
+      customerData,
+    }: {
+      id: string;
+      customerData: CustomerData;
+    }) => updateCustomer(id, customerData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["customers"] });
+      toast.success("Customer updated!");
+    },
+
+    onError: (error: unknown) => {
+      toast.error("Failed to update the customer!");
+      console.error(error);
+    },
+  });
+
+  const onEditConfirm = (formState: CustomerData) => {
+    if (customerToEdit?.id) {
+      editMutation.mutate({ id: customerToEdit.id, customerData: formState });
+    }
+    setCustomerToEdit(null);
+  };
   // Delete functionalities
   const handleDelete = (id: string, customerName: string) => {
     console.log("Deleting customer with id ", id, "whos name is", customerName);
@@ -80,6 +120,14 @@ export default function Customers() {
         name={customerToDelete?.name ?? ""}
         onDeleteCancel={onDeleteCancel}
         onDeleteConfirm={onDeleteConfirm}
+      />
+
+      <EditCustomerDialog
+        open={!!customerToEdit}
+        customer={customerToEdit?.customer ?? null}
+        pending={editMutation.isPending}
+        onEditCancel={onEditCancel}
+        onEditConfirm={onEditConfirm}
       />
     </div>
   );
