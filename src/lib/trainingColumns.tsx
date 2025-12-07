@@ -1,8 +1,11 @@
+import { Button } from "@/components/ui/button";
 import type { Training } from "@/interfaces/training";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DateTime } from "luxon";
 
-export function getTrainingColumns(): ColumnDef<Training>[] {
+export function getTrainingColumns(
+  handleDelete: (id: string, training: Training) => void
+): ColumnDef<Training>[] {
   return [
     {
       accessorKey: "activity",
@@ -52,6 +55,23 @@ export function getTrainingColumns(): ColumnDef<Training>[] {
         if (max !== undefined && duration > max) return false;
 
         return true;
+      },
+    },
+    {
+      accessorKey: "delete",
+      header: "Delete",
+      cell: ({ row }) => {
+        const date = row.original;
+        const dateId = date._links.self.href.split("/").pop() || "";
+
+        return (
+          <Button
+            onClick={() => handleDelete(dateId, date)}
+            variant={"destructive"}
+          >
+            Delete
+          </Button>
+        );
       },
     },
   ];
