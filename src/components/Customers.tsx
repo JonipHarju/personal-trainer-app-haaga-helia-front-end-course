@@ -1,9 +1,10 @@
 import type { Customer } from "@/interfaces/customer";
-import { getCustomerColumns } from "../lib/customerColumns";
+
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllCustomers } from "@/api/customers";
 import { DataTable } from "./DataTable";
 import { AddNewCustomerDialog } from "./AddNewCustomerDialog";
+import { getCustomerColumns } from "@/lib/customerColumns";
 
 export default function Customers() {
   const { isLoading, isSuccess, data } = useQuery({
@@ -13,7 +14,14 @@ export default function Customers() {
 
   const customers: Customer[] = isSuccess ? data._embedded.customers : [];
 
-  const customerColumns = getCustomerColumns();
+  const handleEdit = (customer: Customer, id: string) => {
+    console.log("Editing customer with id ", id, "Customer info", customer);
+  };
+
+  const handleDelete = (id: string) => {
+    console.log("Deleting customer with id ", id);
+  };
+  const customerColumns = getCustomerColumns(handleEdit, handleDelete);
 
   console.log(customers);
   return (
