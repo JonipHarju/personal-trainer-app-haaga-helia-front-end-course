@@ -46,3 +46,16 @@ export async function fetchAllTrainings() {
   );
   return { ...data, _embedded: { trainings } };
 }
+
+export async function deleteTraining(id: string) {
+  const response = await fetch(`${BASE_URL}/trainings/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) throw new Error("Failed to delete customer ");
+
+  return;
+}
