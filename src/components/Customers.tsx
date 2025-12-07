@@ -1,5 +1,4 @@
 import type { Customer, CustomerData } from "@/interfaces/customer";
-
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   deleteCustomer,
@@ -13,6 +12,7 @@ import { useState } from "react";
 import { DeleteCustomerDialog } from "./DeleteCustomerDialog";
 import { toast } from "sonner";
 import { EditCustomerDialog } from "./EditCustomerDialog";
+import ExportCustomersToCSV from "./ExportCustomersToCSV";
 
 export default function Customers() {
   const [customerToDelete, setCustomerToDelete] = useState<{
@@ -107,7 +107,10 @@ export default function Customers() {
 
   return (
     <div className="flex flex-col gap-4 m-12 ">
-      <AddNewCustomerDialog />
+      <div className="flex gap-4">
+        <AddNewCustomerDialog />
+        <ExportCustomersToCSV customers={customers} />
+      </div>
       <DataTable
         columns={customerColumns}
         data={customers}
