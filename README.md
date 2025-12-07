@@ -70,3 +70,21 @@ I only added darkmode screenshots here since the functionality is allready demon
 ### Delete training dialog
 
 ![Screenshot](./public/delete-training-dialog.png)
+
+# part 3
+
+Part 3 adds ability to export customers to CSV file and adds a calendar page.
+
+## Screeshots of the calendar page views
+
+### Month view
+
+![Screenshot](./public/calendar-page-month.png)
+
+### Week view
+
+![Screenshot](./public/calendar-page-week.png)
+
+### Day view
+
+![Screenshot](./public/calendar-page-day.png)
