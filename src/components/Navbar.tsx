@@ -16,6 +16,9 @@ export default function Navbar() {
       <Button className="text-background/90" variant={"link"}>
         <Link to="/training">Training</Link>
       </Button>
+      <Button className="text-background/90" variant={"link"}>
+        <Link to="/calendar">Calendar</Link>
+      </Button>
 
       <ThemeToggle />
     </nav>
