@@ -21,6 +21,9 @@ export default function FrontPage() {
         <Button className="w-30" variant="secondary" size="lg">
           <Link to="/calendar">Calendar</Link>
         </Button>
+        <Button className="w-30" variant="secondary" size="lg">
+          <Link to="/statistics">Statistics</Link>
+        </Button>
       </div>
     </div>
   );
