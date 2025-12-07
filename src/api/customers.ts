@@ -26,3 +26,16 @@ export async function createCustomer(customerData: CustomerData) {
 
   return response.json();
 }
+
+export async function deleteCustomer(id: string) {
+  const response = await fetch(`${BASE_URL}/customers/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) throw new Error("Failed to delete customer ");
+
+  return;
+}

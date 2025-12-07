@@ -3,8 +3,8 @@ import type { Customer } from "@/interfaces/customer";
 import { Button } from "@/components/ui/button";
 
 export function getCustomerColumns(
-  handleEdit: (customer: Customer, id: string) => void,
-  handleDelete: (id: string) => void
+  handleEdit: (customer: Customer, id: string, customerName: string) => void,
+  handleDelete: (id: string, customerName: string) => void
 ): ColumnDef<Customer>[] {
   return [
     {
@@ -44,15 +44,18 @@ export function getCustomerColumns(
         const customer = row.original;
         // id is the last element of the url so split by / and get the last element
         const customerId = customer._links.self.href.split("/").pop() || "";
+        const customerName = `${customer.firstname} ${customer.lastname}`;
 
         return (
           <div className="flex gap-2">
-            <Button onClick={() => handleEdit(customer, customerId)}>
+            <Button
+              onClick={() => handleEdit(customer, customerId, customerName)}
+            >
               Edit
             </Button>
             <Button
               variant={"destructive"}
-              onClick={() => handleDelete(customerId)}
+              onClick={() => handleDelete(customerId, customerName)}
             >
               Delete
             </Button>
