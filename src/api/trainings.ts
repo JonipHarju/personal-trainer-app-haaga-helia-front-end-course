@@ -1,5 +1,5 @@
 import type { Customer } from "@/interfaces/customer";
-import type { Training } from "@/interfaces/training";
+import type { Training, TrainingData } from "@/interfaces/training";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -58,4 +58,18 @@ export async function deleteTraining(id: string) {
   if (!response.ok) throw new Error("Failed to delete customer ");
 
   return;
+}
+
+export async function createTraining(training: TrainingData) {
+  const response = await fetch(`${BASE_URL}/trainings`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(training),
+  });
+
+  if (!response.ok) throw new Error("Failed to add training");
+
+  return response.json();
 }
