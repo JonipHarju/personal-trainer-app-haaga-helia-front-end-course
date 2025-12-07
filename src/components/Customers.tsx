@@ -75,6 +75,7 @@ export default function Customers() {
       />
 
       <DeleteCustomerDialog
+        open={!!customerToDelete}
         id={customerToDelete?.id ?? ""}
         name={customerToDelete?.name ?? ""}
         onDeleteCancel={onDeleteCancel}

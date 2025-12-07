@@ -10,6 +10,7 @@ import {
 } from "./ui/dialog";
 
 type DeleteCustomerDialogProps = {
+  open: boolean;
   id: string;
   name: string;
   onDeleteCancel: () => void;
@@ -17,6 +18,7 @@ type DeleteCustomerDialogProps = {
 };
 
 export function DeleteCustomerDialog({
+  open,
   id,
   name,
   onDeleteCancel,
@@ -26,7 +28,7 @@ export function DeleteCustomerDialog({
 
   return (
     // convert the id to boolean with !! so that if its null this dialog is closed
-    <Dialog open={!!id} onOpenChange={onDeleteCancel}>
+    <Dialog open={open} onOpenChange={onDeleteCancel}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Delete {name} from customers? </DialogTitle>
