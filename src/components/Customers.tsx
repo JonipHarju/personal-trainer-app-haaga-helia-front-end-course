@@ -95,11 +95,12 @@ export default function Customers() {
   const customerColumns = getCustomerColumns(handleEdit, handleDelete);
 
   return (
-    <div className="flex flex-col gap-4 m-12 ">
-      <div className="flex gap-4">
+    <div className="flex flex-col gap-4 w-[98%] overflow-hidden mt-12 max-w-600">
+      <div className="flex flex-col md:flex-row gap-4">
         <AddNewCustomerDialog />
         <ExportCustomersToCSV customers={customers} />
       </div>
+
       <DataTable
         columns={customerColumns}
         data={customers}
