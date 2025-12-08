@@ -74,8 +74,8 @@ export function DataTable<TData, TValue>({
                       }
                       className={
                         header.column.getCanSort()
-                          ? "cursor-pointer select-none inline-flex items-center"
-                          : ""
+                          ? "cursor-pointer select-none inline-flex items-center py-2"
+                          : "py-2"
                       }
                     >
                       {flexRender(
