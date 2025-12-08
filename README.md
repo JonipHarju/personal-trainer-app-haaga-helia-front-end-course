@@ -88,3 +88,9 @@ Part 3 adds ability to export customers to CSV file and adds a calendar page.
 ### Day view
 
 ![Screenshot](./public/calendar-page-day.png)
+
+# part 4
+
+Part 4 adds the statistics route, which displays how many minutes have been reserved by each training activity
+
+![Screenshot](./public/statistics-page.png)
