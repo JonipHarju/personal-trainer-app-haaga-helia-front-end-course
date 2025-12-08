@@ -49,6 +49,7 @@ The project is hosted at: https://personaltrainer.joniharju.fi
 | **Date Handling**      | [Luxon](https://moment.github.io/luxon/)                            |
 | **CSV Export**         | [react-csv](https://github.com/react-csv/react-csv)                 |
 | **Linting**            | [ESLint](https://eslint.org/)                                       |
+| **Utilities**          | [Lodash](https://lodash.com/)                                       |
 
 Additionally some packages like **sonner** and **react-hook-form** have been installed along the shadcn components.
 
