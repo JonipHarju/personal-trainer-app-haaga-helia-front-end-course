@@ -83,9 +83,14 @@ export function AddNewCustomerDialog() {
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button type="submit" disabled={!isFormValid || mutation.isPending}>
-              Create
-            </Button>
+            <DialogClose asChild>
+              <Button
+                type="submit"
+                disabled={!isFormValid || mutation.isPending}
+              >
+                Create
+              </Button>
+            </DialogClose>
           </DialogFooter>
         </form>
       </DialogContent>
