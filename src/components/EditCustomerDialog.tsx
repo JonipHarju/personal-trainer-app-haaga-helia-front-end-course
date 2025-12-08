@@ -76,7 +76,9 @@ export function EditCustomerDialog({
       <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Edit customer</DialogTitle>
+            <DialogTitle>
+              Edit {customer?.firstname} {customer?.lastname}
+            </DialogTitle>
             <DialogDescription>
               Change the information you want to update and press update
             </DialogDescription>

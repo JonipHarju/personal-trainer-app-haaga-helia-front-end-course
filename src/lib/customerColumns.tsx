@@ -3,7 +3,7 @@ import type { Customer } from "@/interfaces/customer";
 import { Button } from "@/components/ui/button";
 
 export function getCustomerColumns(
-  handleEdit: (customer: Customer, id: string, customerName: string) => void,
+  handleEdit: (customer: Customer, id: string) => void,
   handleDelete: (id: string, customerName: string) => void
 ): ColumnDef<Customer>[] {
   return [
@@ -51,7 +51,7 @@ export function getCustomerColumns(
             <Button
               className="cursor-pointer"
               size={"sm"}
-              onClick={() => handleEdit(customer, customerId, customerName)}
+              onClick={() => handleEdit(customer, customerId)}
             >
               Edit
             </Button>

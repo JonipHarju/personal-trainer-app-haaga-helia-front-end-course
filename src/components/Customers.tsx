@@ -35,7 +35,7 @@ export default function Customers() {
   const customers: Customer[] = isSuccess ? data._embedded.customers : [];
 
   // Edit functionalities
-  const handleEdit = (customer: Customer, id: string, customerName: string) => {
+  const handleEdit = (customer: Customer, id: string) => {
     setCustomerToEdit({ customer, id });
   };
 
