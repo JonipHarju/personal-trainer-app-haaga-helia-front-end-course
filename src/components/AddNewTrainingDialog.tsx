@@ -119,13 +119,15 @@ export function AddNewTrainingDialog() {
                 Cancel
               </Button>
             </DialogClose>
-            <Button
-              type="submit"
-              disabled={!isFormValid || mutation.isPending}
-              className="cursor-pointer"
-            >
-              Create
-            </Button>
+            <DialogClose asChild>
+              <Button
+                type="submit"
+                disabled={!isFormValid || mutation.isPending}
+                className="cursor-pointer"
+              >
+                Create
+              </Button>
+            </DialogClose>
           </DialogFooter>
         </form>
       </DialogContent>
