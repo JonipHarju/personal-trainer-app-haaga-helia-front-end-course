@@ -58,7 +58,7 @@ export function getTrainingColumns(
       },
     },
     {
-      accessorKey: "delete",
+      id: "delete",
       header: "Delete",
       cell: ({ row }) => {
         const date = row.original;
