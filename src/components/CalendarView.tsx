@@ -76,7 +76,7 @@ export default function CalendarView() {
       </div>
       <ShadcnBigCalendar
         localizer={localizer}
-        style={{ height: 600, width: "100%" }}
+        style={{ height: 1000, width: "100%" }}
         className="border-2 border-border rounded-lg"
         date={date}
         onNavigate={handleNavigate}
@@ -85,8 +85,8 @@ export default function CalendarView() {
         events={events}
         views={[Views.MONTH, Views.WEEK, Views.DAY]}
         popup
-        min={new Date(2000, 1, 1, 8, 0, 0)}
-        max={new Date(2000, 1, 1, 22, 0, 0)}
+        min={new Date(2000, 1, 1, 0, 0, 0)}
+        max={new Date(2000, 1, 1, 23, 0, 0)}
       />
     </div>
   );
