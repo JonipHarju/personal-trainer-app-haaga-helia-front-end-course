@@ -94,7 +94,7 @@ export function AddNewTrainingDialog() {
           Add new training
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto">
         <form onSubmit={addNewTraining}>
           <DialogHeader>
             <DialogTitle>New training information</DialogTitle>

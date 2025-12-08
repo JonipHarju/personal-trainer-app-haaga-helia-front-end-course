@@ -67,7 +67,7 @@ export function AddNewCustomerDialog() {
           Add new customer
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto">
         <form onSubmit={addNewCustomer}>
           <DialogHeader>
             <DialogTitle>New customer information</DialogTitle>
