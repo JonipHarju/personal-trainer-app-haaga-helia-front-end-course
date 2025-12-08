@@ -24,7 +24,6 @@ export default function Training() {
 
   // delete functionalities
   const handleDelete = (id: string, training: Training) => {
-    console.log("Deleting training with id ", id, "it's data is:", training);
     setTrainingToDelete({ id, training });
   };
 
@@ -51,7 +50,6 @@ export default function Training() {
   };
 
   const trainingColumns = getTrainingColumns(handleDelete);
-  console.log(data);
   return (
     <div className="flex flex-col gap-4 m-12 ">
       <AddNewTrainingDialog />

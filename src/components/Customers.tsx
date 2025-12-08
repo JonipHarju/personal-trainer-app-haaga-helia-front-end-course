@@ -36,15 +36,6 @@ export default function Customers() {
 
   // Edit functionalities
   const handleEdit = (customer: Customer, id: string, customerName: string) => {
-    console.log(
-      "Editing customer with id ",
-      id,
-      "whos name is",
-      customerName,
-      "Customer info",
-      customer
-    );
-
     setCustomerToEdit({ customer, id });
   };
 
@@ -77,7 +68,6 @@ export default function Customers() {
   };
   // Delete functionalities
   const handleDelete = (id: string, customerName: string) => {
-    console.log("Deleting customer with id ", id, "whos name is", customerName);
     setCustomerToDelete({ id, name: customerName });
   };
 
@@ -103,7 +93,6 @@ export default function Customers() {
   };
 
   const customerColumns = getCustomerColumns(handleEdit, handleDelete);
-  console.log(customers);
 
   return (
     <div className="flex flex-col gap-4 m-12 ">
