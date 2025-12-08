@@ -63,7 +63,7 @@ export function AddNewCustomerDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="max-w-fit cursor-pointer">
+        <Button variant="outline" className="max-w-fit cursor-pointer min-w-40">
           Add new customer
         </Button>
       </DialogTrigger>

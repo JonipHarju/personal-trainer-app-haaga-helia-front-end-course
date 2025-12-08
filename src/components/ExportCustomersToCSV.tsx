@@ -45,7 +45,7 @@ export default function ExportCustomersToCSV({
   }));
 
   return (
-    <Button variant="default" className="max-w-fi">
+    <Button variant="default" className="max-w-fit min-w-40">
       <CSVLink
         data={csvData}
         headers={customerHeaders}
