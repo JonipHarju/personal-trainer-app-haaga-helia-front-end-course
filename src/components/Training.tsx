@@ -52,7 +52,16 @@ export default function Training() {
   const trainingColumns = getTrainingColumns(handleDelete);
   return (
     <div className="flex flex-col gap-4 w-[98%] max-w-600 overflow-hidden mt-12">
-      <AddNewTrainingDialog />
+      <div className="flex flex-col gap-4 w-full items-center md:items-start">
+        <div>
+          <h1 className="text-2xl font-bold">Training data</h1>
+          <p className="text-muted-foreground">Manage your training sessions</p>
+        </div>
+        <div className="flex flex-col md:flex-row gap-4">
+          <AddNewTrainingDialog />
+        </div>
+      </div>
+
       <DataTable
         columns={trainingColumns}
         data={trainings}

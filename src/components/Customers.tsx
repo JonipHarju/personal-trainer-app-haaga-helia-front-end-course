@@ -96,9 +96,15 @@ export default function Customers() {
 
   return (
     <div className="flex flex-col gap-4 w-[98%] overflow-hidden mt-12 max-w-600">
-      <div className="flex flex-col md:flex-row gap-4">
-        <AddNewCustomerDialog />
-        <ExportCustomersToCSV customers={customers} />
+      <div className="flex flex-col gap-4 w-full items-center md:items-start">
+        <div>
+          <h1 className="text-2xl font-bold">Customer data</h1>
+          <p className="text-muted-foreground">Manage your customers</p>
+        </div>
+        <div className="flex flex-col md:flex-row gap-4">
+          <AddNewCustomerDialog />
+          <ExportCustomersToCSV customers={customers} />
+        </div>
       </div>
 
       <DataTable
