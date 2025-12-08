@@ -96,7 +96,7 @@ export default function Customers() {
 
   return (
     <div className="flex flex-col gap-4 w-[98%] overflow-hidden mt-12 max-w-600">
-      <div className="flex flex-col gap-4 w-full items-center md:items-start text-center">
+      <div className="flex flex-col gap-4 w-full items-center md:items-start text-center md:text-left">
         <div>
           <h1 className="text-2xl font-bold">Customer data</h1>
           <p className="text-muted-foreground">Manage your customers</p>
