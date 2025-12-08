@@ -15,12 +15,13 @@
  */
 
 import { luxonLocalizer, Views } from "react-big-calendar";
+import type { View } from "react-big-calendar";
 import { fetchAllTrainings } from "@/api/trainings";
 import { useQuery } from "@tanstack/react-query";
 import { DateTime } from "luxon";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import type { Training } from "@/interfaces/training";
-import { useState, type SetStateAction } from "react";
+import { useState } from "react";
 import ShadcnBigCalendar from "@/lib/shadcn-big-calendar";
 type CalendarEvent = {
   title: string;
@@ -29,7 +30,7 @@ type CalendarEvent = {
   allDay?: boolean;
 };
 export default function CalendarView() {
-  const [view, setView] = useState(Views.MONTH);
+  const [view, setView] = useState<View>(Views.MONTH);
   const [date, setDate] = useState(new Date());
 
   const { data } = useQuery({
@@ -62,7 +63,7 @@ export default function CalendarView() {
     setDate(newDate);
   };
 
-  const handleViewChange = (newView: SetStateAction<any>) => {
+  const handleViewChange = (newView: View) => {
     setView(newView);
   };
 
