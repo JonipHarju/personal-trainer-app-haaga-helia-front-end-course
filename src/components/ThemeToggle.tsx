@@ -21,7 +21,7 @@ export default function ThemeToggle() {
     <Toggle
       pressed={darkMode}
       onPressedChange={setDarkMode}
-      className="rounded-4xl"
+      className={`rounded-4xl ${darkMode ? "bg-foreground" : "bg-foreground"}`}
     >
       {darkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
     </Toggle>
