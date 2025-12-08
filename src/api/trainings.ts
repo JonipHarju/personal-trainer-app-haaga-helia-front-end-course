@@ -38,7 +38,7 @@ export async function fetchAllTrainings() {
             customerName = `${customer.firstname} ${customer.lastname}`;
           }
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
       }
       return { ...training, customerName };
