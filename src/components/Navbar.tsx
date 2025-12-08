@@ -42,7 +42,7 @@ export default function Navbar() {
       {menuOpen && (
         <div className="flex fixed inset-0 bg-background z-50">
           <button
-            className="absolute top-[-0.90rem] right-4 text-white text-6xl"
+            className="absolute top-[-0.90rem] right-4 text-foreground text-6xl"
             onClick={() => setMenuOpen(false)}
           >
             x
